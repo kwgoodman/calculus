@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=0cm,bottom=2cm]{geometry} % page settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{MTH 251: Week 2 lab write up}
+\author{C. M. Hughes}
+\date{\today}
+\maketitle
+
+\subsection*{Lab activity 1.2.4}
+Find the difference quotient of $f(x)$ when $f(x)=x^3$.
+
+We proceed as demonstrated in the lab manual; assuming that $h\ne 0$ 
+we have
+\begin{align*}
+    \frac{f(x+h)-f(x)}{h} & =  \frac{(x+h)^3-x^3}{h}   \\
+                          & =  \frac{x^3+3x^2h+3xh^2+h^3 - x^3}{h}\\
+                          & =  \frac{3x^2h+2xh^2+h^3}{h}\\
+                          & =  \frac{h(3x^2+2xh+h^2)}{h}\\
+                          & =  3x^2+2xh+h^2
+\end{align*} 
+
+\subsection*{Lab activity 2.3.4}
+Use the definition of the derivative to find $f'(x)$ when $f(x)=x^{\frac{1}{4}}$.
+
+Using the definition of the derivative, we have
+\begin{align*}
+            f'(x)           &= \lim_{h\rightarrow 0}\frac{(x+h)^{1/4}-x^{1/4}}{h}   \\
+                            &=  \lim_{h\rightarrow 0}\frac{(x+h)^{1/4}-x^{1/4}}{h}\cdot \frac{((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}{((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}\\
+                            &=  \lim_{h\rightarrow 0}\frac{(x+h)-x}{h((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}    \\  
+                            &=  \lim_{h\rightarrow 0}\frac{1}{((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}   \\
+                            &= \frac{1}{(x^{1/4}+x^{1/4})(x^{1/2}+x^{1/2})} \\
+                            &=  \frac{1}{(2x^{1/4})(2x^{1/2})}  \\
+                            &=  \frac{1}{4x^{3/4}}  \\
+                            &=  \frac{1}{4}x^{-3/4}
+\end{align*}
+Note: the key observation here is that
+\begin{align*}
+    a^4-b^4 &= (a^2-b^2)(a^2+b^2)   \\
+        &= (a-b)(a+b)(a^2+b^2), 
+\end{align*}
+with 
+\[
+    a = (x+h)^{1/4}, \qquad b = x^{1/4},
+\]
+which allowed us to rationalize the denominator.
+
+\end{document}
