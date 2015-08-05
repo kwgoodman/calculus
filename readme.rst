@@ -1,3 +1,6 @@
-I haven't done any calculus in decades. Well, that's no longer true because
-I am taking an online single-variable calculus class. This repo is a tex
-document that contains some ideas that occured to me while taking the class.
+I haven't done calculus in decades. Well, that's no longer true because I
+recently took a single-variable calculus course. The 13-week online class was
+taught by Robert Ghrist. He's the calculus teacher you wish you had.
+
+This repo contains some of the ideas that we covered in class and some of the
+ideas that occured to me while taking the class.

@@ -1,52 +1,129 @@
 \documentclass{article}
 \usepackage[left=3cm,right=3cm,top=0cm,bottom=2cm]{geometry} % page settings
-\usepackage{amsmath} % provides many mathematical environments & tools
-
-\setlength{\parindent}{0mm}
+\usepackage{amsmath}
+\usepackage{mathtools}
 
 \begin{document}
 
-\title{MTH 251: Week 2 lab write up}
-\author{C. M. Hughes}
-\date{\today}
+\title{What I think about when I think about calculus}
+\author{Keith Goodman}
 \maketitle
 
-\subsection*{Lab activity 1.2.4}
-Find the difference quotient of $f(x)$ when $f(x)=x^3$.
+\subsection*{Introduction}
 
-We proceed as demonstrated in the lab manual; assuming that $h\ne 0$ 
-we have
-\begin{align*}
-    \frac{f(x+h)-f(x)}{h} & =  \frac{(x+h)^3-x^3}{h}   \\
-                          & =  \frac{x^3+3x^2h+3xh^2+h^3 - x^3}{h}\\
-                          & =  \frac{3x^2h+2xh^2+h^3}{h}\\
-                          & =  \frac{h(3x^2+2xh+h^2)}{h}\\
-                          & =  3x^2+2xh+h^2
-\end{align*} 
+I haven't done calculus in decades. Well, that's no longer true because I
+recently took a single-variable calculus course. The 13-week online class was
+taught by Robert Ghrist. He's the calculus teacher you wish you had.
 
-\subsection*{Lab activity 2.3.4}
-Use the definition of the derivative to find $f'(x)$ when $f(x)=x^{\frac{1}{4}}$.
+This document contains some of the ideas that we covered in class and some of
+the ideas that occured to me while taking the class.
 
-Using the definition of the derivative, we have
-\begin{align*}
-            f'(x)           &= \lim_{h\rightarrow 0}\frac{(x+h)^{1/4}-x^{1/4}}{h}   \\
-                            &=  \lim_{h\rightarrow 0}\frac{(x+h)^{1/4}-x^{1/4}}{h}\cdot \frac{((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}{((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}\\
-                            &=  \lim_{h\rightarrow 0}\frac{(x+h)-x}{h((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}    \\  
-                            &=  \lim_{h\rightarrow 0}\frac{1}{((x+h)^{1/4}+x^{1/4})((x+h)^{1/2}+x^{1/2})}   \\
-                            &= \frac{1}{(x^{1/4}+x^{1/4})(x^{1/2}+x^{1/2})} \\
-                            &=  \frac{1}{(2x^{1/4})(2x^{1/2})}  \\
-                            &=  \frac{1}{4x^{3/4}}  \\
-                            &=  \frac{1}{4}x^{-3/4}
-\end{align*}
-Note: the key observation here is that
-\begin{align*}
-    a^4-b^4 &= (a^2-b^2)(a^2+b^2)   \\
-        &= (a-b)(a+b)(a^2+b^2), 
-\end{align*}
-with 
+\subsection*{Partial sums}
+
+After helping my daughter with arithmetic and geometric sequences and series in
+Algebra 2 and Precalculus I didn't think I could get excited about finding
+partial sums. Yet that's exactly what happened when we covered the subject in
+class.
+
+Our motivation in this section is to simplify the partial sum
+
 \[
-    a = (x+h)^{1/4}, \qquad b = x^{1/4},
+    S(k)=\sum\limits_{n=0}^k n^3-4n^2.
 \]
-which allowed us to rationalize the denominator.
+
+\noindent Notice that the series is neither arithmetic nor geometric---finally
+something new.
+
+The partial sum is analogous to the definite integral $I(k)$ in continuous
+calculus:
+
+\[
+I(k)=\int\limits_{n=0}^k f(n)dn=\int\limits_{n=0}^k\frac{dF(n)}{dn}dn=F(k)-F(0)
+\]
+
+\noindent where $dn$ corresponds to $\Delta n=1$ in the discrete case and
+$F(n)$ is an antiderivative of $f(n)$.
+
+We will proceed in an analogous fashion for the discrete case:
+
+\begin{align*}
+    S(k) &= \sum\limits_{n=0}^k a_n = \sum\limits_{n=0}^k (\Delta b)_n \\
+         &= (b_1 - b_0)+(b_2 - b_1)+ \ldots + (b_k - b_{k-1}) + (b_{k+1} - b_k) \\
+         &= b_{k+1} - b_0
+\end{align*}
+
+\noindent where $(\Delta b)_n = b_{n+1} - b_n$, the forward difference, is the
+discrete derivative and $b$ is a discrete antiderivative of $a$.
+
+The problem of simplifying $S(k)$ has now been reduced to finding a discrete
+antiderivative of $n^3-4n^2$. In other words we need to find a sequence $b_n$
+such that $(\Delta b)_n = n^3-4n^2$. It is easy to find recursion relation:
+$b_{n+1} = n^3-3n^2 + b_n$. However, to fully simplify $S(k)$, we need an
+analytic solution for $b$, which we will obtain by using falling powers.
+
+Falling powers are defined as
+
+\[
+    n^{\underline{k}} = n(n-1)(n-2)\ldots(n-k+2)(n-k+1)
+\]
+
+\noindent where $k$ is an integer and, by a second definition,
+$n^{\underline{0}}=1$. For example
+
+\[
+    n^{\underline{3}} = n(n-1)(n-2) = n^3-3n^2+2n.
+\]
+
+\noindent Solving for $n^3$ gives $n^3 = n^{\underline{3}} + 3n^2-2n$.
+Similarly $n^2 = n^{\underline{2}} + n$. After a little bit of algebra we get
+
+\[
+(\Delta b)_n=n^3-4n^2=n^{\underline{3}}-n^{\underline{2}}-3n^{\underline{1}}.
+\]
+
+The whole point of using falling powers is to (gently) coerce the problem into
+a form solvable by the familiar mechanics of continuous calculus.  After three
+lines of algebra, which we will skip, the discrete derivative of
+$n^{\underline{k}}$ is given by the discrete power rule:
+$\Delta n^{\underline{k}}= kn^{\underline{k-1}}$. Therefore $b$ is quite
+simply given by
+
+\[
+b_n=\frac{1}{4}n^{\underline{4}}-\frac{1}{3}n^{\underline{3}}-\frac{3}{2}n^{\underline{2}}+C
+\]
+
+\noindent where $C$ is a constant. (To see that $b_n$ is correct we would
+differentiate it to obtain
+$n^{\underline{3}}-n^{\underline{2}}-3n^{\underline{1}}.$)
+
+Putting it all together:
+
+\begin{align*}
+    S(k) &= \sum\limits_{n=0}^k n^3-4n^2 \\
+         &= \sum\limits_{n=0}^k \Delta (\frac{1}{4}n^{\underline{4}}-\frac{1}{3}n^{\underline{3}}-\frac{3}{2}n^{\underline{2}}+C) \\
+         &= \frac{1}{4}(k+1)^{\underline{4}}-\frac{1}{3}(k+1)^{\underline{3}}-\frac{3}{2}(k+1)^{\underline{2}} \\
+         &= \frac{1}{12}k(k+1)(3k^2-13k-8)
+\end{align*}
+
+\noindent where, if we wish to use the last line, $k > 2$ lest we run into
+troubles such as $3^{\underline{4}}=0$. For $2 \geq k \geq 0$, the partial sum
+$S(k)$ is easily calculated by hand.
+
+Let's try a simpler example:
+
+\[
+    \sum\limits_{n=0}^k n^2 \\
+    =\sum\limits_{n=0}^k n^{\underline{2}}+n^{\underline{1}} \\
+    =\sum\limits_{n=0}^k \Delta (\frac{1}{3}n^{\underline{3}}+\frac{1}{2}n^{\underline{2}}) \\
+    =\frac{1}{3}(k+1)^{\underline{3}}+\frac{1}{2}(k+1)^{\underline{2}} \\
+    =\frac{1}{6}k(k+1)(2k+1)
+\]
+
+\noindent where, if we wish to use the last part, $k > 1$.
+
+Without much effort we were able to use the results we already know from
+continuous calculus to find partial sums of discrete series. The techniques we
+used in this section allow us to find partial sums of (some of the) sequences
+$a_n$ that can be written as rational functions of $n$.
 
 \end{document}
