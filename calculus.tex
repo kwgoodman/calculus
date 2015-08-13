@@ -260,4 +260,32 @@ An alternative method to calculate the sum could have started with
     &=(n+p-1)^{\underline{p}}  && \text{Definition of falling powers}
 \end{align*}
 
+
+
+\subsection*{Using Taylor series to find derivatives}
+
+We often find the Taylor series of a function $f(x)$ about $x=a$ by a
+brute-force calculation of derivatives $f^{(n)}(a)$. If, however, we already
+know the Taylor series of $f(x)$ about $x=a$ then we can use it to easily find
+the derivative $f^{(n)}(a)$. For example what is the second derivative of $\sin
+x^2$ evaluated at $x=0$?
+
+In class we memorized the Taylor series of $\sin x$ about $x=0$:
+
+$$
+\sin x = x - \frac{x^2}{2} + \frac{x^3}{6} + O(x^5).
+$$
+
+\noindent Therefore $\sin x^2 = x^2 + O(x^4)$. The term containing $x^2$ in any
+Taylor series about $x=0$ is $f''(0)x^2/2$. Setting this equal to the $x^2$
+term in the Taylor series of $\sin x^2$ gives
+
+\begin{align*}
+    \frac{f''(0)x^2}{2} &= x^2 \\
+    f''(0) &=  2
+\end{align*}
+
+\noindent Similarly we would easily find that the sixth derivative of
+$e^{-x^2}$ evaluated at $x=0$ was $-120$.
+
 \end{document}
